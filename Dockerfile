@@ -31,4 +31,4 @@ CMD cron; nginx -g 'daemon off;'
 # Expose port 80 for NGINX
 EXPOSE 80
 
-# Run: docker run -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -e GERRIT_USER=${gerrit username} -e GERRIT_HOST=${gerrit ip} --restart=always --name stats -p 80:80 -itd osamatoor/gerritstats
+# Run: docker run -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -e GERRIT_USER=${gerrit_username} -e GERRIT_HOST=${gerrit_ip} --restart=always --name stats -p 80:80 -itd osamatoor/gerritstats
