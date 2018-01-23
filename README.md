@@ -13,4 +13,4 @@ Prerequisites:
 4. Your host machines public key should be added to a gerrit-user. You will pass that gerrit-user as `${gerrit_username}`
 
 Usage:
-`docker run -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -e GERRIT_USER=${gerrit_username} --restart=always --name stats -p 80:80 -itd --add-host=${gerrit hostname}:${gerrit ip} osamatoor/gerritstats`
+`docker run -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -e GERRIT_USER=${gerrit_username} -e GERRIT_HOST=${gerrit_ip} --restart=always --name stats -p 80:80 -itd osamatoor/gerritstats`
