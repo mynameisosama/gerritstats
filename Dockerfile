@@ -10,7 +10,7 @@ RUN apt-get install -y openjdk-8-jdk nodejs build-essential
 
 # Setup CRON job
 COPY gerrit_stats.sh /etc/cron.hourly/gerrit_stats.sh
-RUN echo "0 * * * * /etc/cron.hourly/gerrit_stats.sh >> /var/log/stats.log 2>&1" > stats_cron_job
+RUN echo "*/10 * * * * /etc/cron.hourly/gerrit_stats.sh >> /var/log/stats.log 2>&1" > stats_cron_job
 RUN crontab stats_cron_job
 RUN rm stats_cron_job
 
@@ -31,4 +31,4 @@ CMD cron; nginx -g 'daemon off;'
 # Expose port 80 for NGINX
 EXPOSE 80
 
-# Run: docker run -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -e GERRIT_USER=${gerrit_username} --restart=always --name stats -p 80:80 -itd --add-host=${gerrit hostname}:${gerrit ip} osamatoor/gerritstats
+# Run: docker run -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -e GERRIT_USER=${gerrit username} -e GERRIT_HOST=${gerrit ip} --restart=always --name stats -p 80:80 -itd osamatoor/gerritstats
