@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  generate:
+    build: .
+    volumes:
+     - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+     - data:/stats/out-html
+    environment:
+     - GERRIT_USER=/run/secrets/gerrit_user
+     - GERRIT_HOST=/run/secrets/gerrit_ip
+    secrets:
+     - gerrit_user
+     - gerrit_ip
+  ui:
+    image: nginx:stable-alpine
+    volumes:
+    - data:/usr/share/nginx/html
+    restart: always
+    ports:
+    - "80:80"
+volumes:
+  data: {}
+secrets:
+  gerrit_user:
+    file: ./gerrit_user
+  gerrit_ip:
+    file: ./gerrit_ip
